@@ -1,0 +1,371 @@
+:root {
+  --brand-50: #EAF6FA;
+  --brand-100: #D5EDF5;
+  --brand-200: #ACDBEA;
+  --brand-500: #2596BE;
+  --brand-600: #1F7FA1;
+  --brand-700: #196985;
+  --brand-900: #0F3442;
+
+  --app-bg: #F5F8FA;
+  --surface: #FFFFFF;
+  --text: #17252D;
+  --text-secondary: #647681;
+  --border: #D8E3E8;
+
+  --success: #198754;
+  --warning: #F59E0B;
+  --critical: #DC3545;
+  --info: #2596BE;
+  --inactive: #7B8790;
+  --acdc: #7C3AED;
+}
+
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  background: var(--app-bg);
+  color: var(--text);
+  font-size: 15px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+/* Mobile-specific styles for login page */
+@media (max-width: 860px) {
+  /* Add margin-top to NUMILOG logo */
+  .login-left .login-logo {
+    margin-top: 20px !important;
+    position: static !important;
+    margin-bottom: 16px;
+  }
+  
+  /* Reduce subtitle font size on mobile */
+  .login-subtitle {
+    font-size: 18px !important;
+  }
+  
+  /* Existing mobile styles */
+  .login-page { flex-direction: column !important; }
+  .login-left {
+    flex: none !important;
+    min-height: 320px !important;
+    padding: 32px !important;
+    justify-content: flex-start !important;
+  }
+  .login-right { flex: 1 1 auto !important; }
+  .login-lang-mobile { position: static !important; margin: 24px auto 0 !important; }
+}
+
+@media (min-width: 861px) {
+  .login-lang-desktop { display: flex !important; }
+  .login-lang-mobile { display: none !important; }
+}
+
+@media (max-width: 860px) {
+  .login-lang-desktop { display: none !important; }
+}
+
+/* ACDC page */
+.acdc-body { padding: 32px; max-width: 1400px; margin: 0 auto; }
+.acdc-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.acdc-kpi { padding: 20px; }
+.acdc-task-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.acdc-stepper { display: flex; align-items: flex-start; margin-top: 18px; }
+.acdc-action { width: auto; padding: 0 24px; float: right; }
+.acdc-task::after { content: ''; display: block; clear: both; }
+
+@media (max-width: 760px) {
+  .acdc-body { padding: 16px; }
+  .acdc-kpis { grid-template-columns: 1fr; gap: 12px; }
+  .acdc-brand-text { display: none; }
+  .acdc-step-label { display: none; }      /* hide step text on mobile, keep dots */
+  .acdc-stepper { margin-top: 14px; }
+  .acdc-action { width: 100%; float: none; padding: 0; }
+}
+@media (max-width: 820px) {
+  .gate-kpis { grid-template-columns: 1fr 1fr !important; }
+  .gate-row { flex-wrap: wrap !important; }
+  .gate-row > div { min-width: auto !important; }
+}
+@media (max-width: 480px) {
+  .gate-kpis { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 1000px) {
+  .gate-grid { grid-template-columns: 1fr !important; }
+  .gate-kpis { grid-template-columns: 1fr 1fr !important; }
+  .gate-card-main { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 480px) {
+  .gate-kpis { grid-template-columns: 1fr !important; }
+  .gate-row-main { gap: 10px !important; }
+}
+/* =====================================================
+   PARAMETERS PAGE — ALIGNMENT AND INPUT FIXES ONLY
+   ===================================================== */
+
+.params-page {
+  width: 100%;
+  font-size: 13px;
+}
+
+.params-page h1 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+/* Keep cards aligned to the same height */
+.params-row1,
+.params-row2 {
+  align-items: stretch !important;
+  gap: 16px !important;
+}
+
+.params-row1 {
+  margin-bottom: 16px !important;
+}
+
+.params-row1 > div,
+.params-row2 > div {
+  min-width: 0;
+  height: 100%;
+}
+
+/* Consistent inputs */
+.params-page input {
+  box-sizing: border-box;
+  height: 36px !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px !important;
+  outline: none;
+}
+
+.params-page input:focus {
+  border-color: var(--brand-500) !important;
+  box-shadow: 0 0 0 3px rgba(37, 150, 190, 0.12);
+}
+
+/* Full-width inputs inside normal cards */
+.params-row1 > div:nth-child(2) input[type="number"],
+.params-row2 > div:nth-child(1) input[type="number"],
+.params-row2 > div:nth-child(3) input[type="number"] {
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 0 10px !important;
+}
+
+/* =====================================================
+   TRUCK DURATION TABLE
+   ===================================================== */
+
+.params-row1 > div:first-child table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.params-row1 > div:first-child th,
+.params-row1 > div:first-child td {
+  vertical-align: middle;
+}
+
+.params-row1 > div:first-child th:first-child,
+.params-row1 > div:first-child td:first-child {
+  width: 34%;
+  text-align: left;
+}
+
+.params-row1 > div:first-child th:nth-child(2),
+.params-row1 > div:first-child td:nth-child(2),
+.params-row1 > div:first-child th:nth-child(3),
+.params-row1 > div:first-child td:nth-child(3),
+.params-row1 > div:first-child th:nth-child(4),
+.params-row1 > div:first-child td:nth-child(4) {
+  width: 16%;
+  text-align: center;
+}
+
+.params-row1 > div:first-child th:nth-child(5),
+.params-row1 > div:first-child td:nth-child(5) {
+  width: 18%;
+  text-align: center;
+}
+
+/* Compact duration inputs */
+.params-row1 > div:first-child table input[type="number"] {
+  width: 72px !important;
+  min-width: 72px !important;
+  padding: 0 6px !important;
+  text-align: center;
+}
+
+/* =====================================================
+   SHIFT TABLE
+   ===================================================== */
+
+.params-row2 > div:nth-child(2) table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.params-row2 > div:nth-child(2) th,
+.params-row2 > div:nth-child(2) td {
+  vertical-align: middle;
+}
+
+.params-row2 > div:nth-child(2) th:first-child,
+.params-row2 > div:nth-child(2) td:first-child {
+  width: 25%;
+  text-align: left;
+}
+
+.params-row2 > div:nth-child(2) th:nth-child(2),
+.params-row2 > div:nth-child(2) td:nth-child(2),
+.params-row2 > div:nth-child(2) th:nth-child(3),
+.params-row2 > div:nth-child(2) td:nth-child(3) {
+  width: 27%;
+  text-align: center;
+}
+
+.params-row2 > div:nth-child(2) th:nth-child(4),
+.params-row2 > div:nth-child(2) td:nth-child(4) {
+  width: 21%;
+  text-align: center;
+}
+
+/* Fix clipped time selector */
+.params-page input[type="time"] {
+  width: 108px !important;
+  min-width: 108px !important;
+  height: 38px !important;
+  padding: 0 8px !important;
+  text-align: center;
+  color-scheme: light;
+}
+
+/* OPL input */
+.params-row2 > div:nth-child(2) input[type="number"] {
+  width: 58px !important;
+  min-width: 58px !important;
+  height: 38px !important;
+  padding: 0 5px !important;
+  text-align: center;
+}
+
+/* Give table cells equal spacing */
+.params-page table th {
+  padding: 6px 8px !important;
+  white-space: nowrap;
+}
+
+.params-page table td {
+  padding: 7px 8px !important;
+}
+
+/* Prevent numbers and badges from breaking */
+.params-page table span {
+  white-space: nowrap;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1100px) {
+  .params-row1,
+  .params-row2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .params-row1 > div,
+  .params-row2 > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .params-page {
+    font-size: 12px;
+  }
+
+  .params-page h1 {
+    font-size: 21px;
+  }
+
+  /* Keep tables scrollable instead of destroying alignment */
+  .params-row1 > div:first-child > div:last-child,
+  .params-row2 > div:nth-child(2) {
+    overflow-x: auto;
+  }
+
+  .params-row1 > div:first-child table {
+    min-width: 600px !important;
+  }
+
+  .params-row2 > div:nth-child(2) table {
+    min-width: 470px !important;
+  }
+
+  .params-page input[type="time"] {
+    width: 112px !important;
+    min-width: 112px !important;
+  }
+}
+
+
+/* Shell responsive — handled via <style> inside Shell.jsx */
+/* ---- Parameters polish ---- */
+.params-page .pcard,
+.params-row1 > div,
+.params-row2 > div {
+  box-shadow: 0 1px 3px rgba(15, 52, 66, 0.04);
+  transition: box-shadow .15s;
+}
+.params-row1 > div:hover,
+.params-row2 > div:hover {
+  box-shadow: 0 4px 16px rgba(15, 52, 66, 0.08);
+}
+
+/* section header icons sit in a soft tinted circle */
+.params-page .sec-icon {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: var(--brand-50);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* table header row a touch stronger */
+.params-page thead th {
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: 10px !important;
+  color: var(--text-secondary);
+}
+
+/* zebra-free but clearer rows */
+.params-page tbody tr td { border-top: 1px solid var(--border); }
+
+/* total badges a bit bolder */
+.params-page tbody td:last-child span { font-size: 13px !important; }
+
+/* inputs: softer + clear focus already set; add hover */
+.params-page input:hover { border-color: var(--brand-200) !important; }
+.params-page input[type="time"],
+.params-page input[type="number"] {
+  font-size: 12px !important;
+}
